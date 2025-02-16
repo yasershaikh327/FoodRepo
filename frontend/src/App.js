@@ -5,7 +5,7 @@ function App() {
   const currentPath = window.location.pathname; // Get the current path from the root
 
   useEffect(() => {
-    fetch("hello.php")
+    fetch("./hello.php")
       .then((response) => response.json())
       .then((data) => {
         console.log(data.message);
