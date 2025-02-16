@@ -1,24 +1,23 @@
-import { useEffect, useState } from "react";
+import logo from './logo.svg';
+import './App.css';
 
 function App() {
-  const [apiMessage, setApiMessage] = useState("");
-  const currentPath = window.location.pathname; // Get the current path from the root
-
-  useEffect(() => {
-    fetch("./hello.php")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data.message);
-        setApiMessage(data.message); // Save the API message to state
-      })
-      .catch((error) => console.error("Error fetching API:", error));
-  }, []);
-
   return (
-    <div>
-      <h1>Check the console for the API response</h1>
-      <p>Current Path: {currentPath}</p>
-      {apiMessage && <p>API Message: {apiMessage}</p>}
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
     </div>
   );
 }
