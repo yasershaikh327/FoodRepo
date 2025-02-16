@@ -1,10 +1,46 @@
+# version: '3'
+# services:
+#   backend:
+#     build: ./backend
+#     ports:
+#       - "8080:80"
+#   frontend:
+#     build: ./frontend
+#     ports:
+#       - "3000:3000"
 version: '3'
 services:
+  mariadb:
+    image: mariadb:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: your_db_name
+      MYSQL_USER: your_db_user
+      MYSQL_PASSWORD: your_db_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+
   backend:
     build: ./backend
     ports:
       - "8080:80"
+    environment:
+      # Environment variables for your PHP app to connect to PostgreSQL on Render
+      DB_HOST: ydpg-cuorbi3qf0us7394q89g-a
+      DB_PORT: "5432"
+      DB_USER: fooddb_cphs_user
+      DB_PASSWORD: kFTLUGRLmFzZNErjOyTO2Tr35vii1aUz
+      DB_NAME: fooddb_cphs
+
   frontend:
     build: ./frontend
     ports:
       - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  dbdata:
