@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 function App() {
   useEffect(() => {
-    fetch("http://localhost/backend/index.php")
+    fetch("/backend/index.php")
       .then((response) => response.json())
       .then((data) => console.log(data.message))
       .catch((error) => console.error("Error fetching API:", error));
